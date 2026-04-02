@@ -24,7 +24,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 #CORS
 app. add_middleware(
     CORSMiddleware,
-    allow_origins=["https://full-stack-ai-chatbot-api-production.up.railway.app"],
+    allow_origins=["https://full-stack-ai-chatbot-api-mujahid.up.railway.app/"],
     allow_methods=["*"],
     allow_headers=["*"],
 )

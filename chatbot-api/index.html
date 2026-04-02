@@ -9,23 +9,25 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --ink: #0e0e0e;
-            --ink-soft: #3a3a3a;
-            --ink-mute: #888;
-            --surface: #f5f3ee;
-            --surface-2: #eceae3;
-            --surface-3: #e0ddd5;
-            --accent: #1a472a;
-            --accent-light: #2d6a42;
-            --accent-glow: rgba(26,71,42,0.12);
-            --gold: #c9a84c;
-            --gold-light: #f0d080;
+            --ink: #1a2e2e;
+            --ink-soft: #3d5454;
+            --ink-mute: #7a9a9a;
+            --surface: #f0f7f7;
+            --surface-2: #e4f0f0;
+            --surface-3: #cce3e3;
+            --accent: #2a9d8f;
+            --accent-light: #38b2a3;
+            --accent-dark: #1f7a6e;
+            --accent-glow: rgba(42,157,143,0.10);
+            --teal-pale: #e6f4f3;
+            --mint: #b2dfdb;
             --white: #ffffff;
-            --danger: #c0392b;
-            --radius-sm: 6px;
-            --radius-md: 12px;
-            --radius-lg: 18px;
-            --radius-xl: 24px;
+            --danger: #e07070;
+            --danger-bg: #fdf3f3;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 26px;
         }
 
         body {
@@ -45,19 +47,19 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(26,71,42,0.06) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 80% at 80% 90%, rgba(201,168,76,0.06) 0%, transparent 60%);
+                radial-gradient(ellipse 70% 55% at 15% 10%, rgba(42,157,143,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 70% at 85% 90%, rgba(178,223,219,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 60% 30%, rgba(230,244,243,0.5) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Grain texture */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+            opacity: 0.35;
             pointer-events: none;
             z-index: 0;
         }
@@ -81,7 +83,10 @@
             border-radius: var(--radius-xl);
             border: 1px solid var(--surface-3);
             padding: 2.5rem 2rem 2rem;
-            box-shadow: 0 2px 40px rgba(0,0,0,0.07), 0 0 0 1px rgba(255,255,255,0.8) inset;
+            box-shadow:
+                0 2px 40px rgba(42,157,143,0.06),
+                0 1px 0 rgba(255,255,255,0.9) inset,
+                0 0 0 1px rgba(42,157,143,0.04);
         }
 
         .auth-brand {
@@ -92,29 +97,30 @@
         }
 
         .brand-mark {
-            width: 38px;
-            height: 38px;
-            background: var(--accent);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 3px 12px rgba(42,157,143,0.25);
         }
 
         .brand-mark::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent 60%);
         }
 
-        .brand-mark svg { width: 20px; height: 20px; fill: var(--gold-light); position: relative; z-index: 1; }
+        .brand-mark svg { width: 20px; height: 20px; fill: white; position: relative; z-index: 1; }
 
         .brand-name {
             font-family: 'Syne', sans-serif;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
             color: var(--ink);
             letter-spacing: -0.5px;
@@ -135,11 +141,11 @@
             border: none;
             background: transparent;
             font-family: 'Syne', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--ink-mute);
             cursor: pointer;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
             position: relative;
             transition: color 0.2s;
@@ -153,7 +159,8 @@
             height: 2px;
             background: var(--accent);
             transform: scaleX(0);
-            transition: transform 0.2s ease;
+            transition: transform 0.22s ease;
+            border-radius: 2px;
         }
 
         .auth-tab.active { color: var(--accent); }
@@ -182,13 +189,14 @@
             font-size: 15px;
             color: var(--ink);
             background: var(--surface);
-            transition: border-color 0.15s, background 0.15s;
+            transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
             outline: none;
         }
 
         .auth-input:focus {
             border-color: var(--accent);
             background: var(--white);
+            box-shadow: 0 0 0 3px rgba(42,157,143,0.08);
         }
 
         .auth-input::placeholder { color: var(--ink-mute); opacity: 0.5; }
@@ -196,7 +204,7 @@
         .auth-btn {
             width: 100%;
             padding: 12px;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             color: white;
             border: none;
             border-radius: var(--radius-sm);
@@ -206,19 +214,11 @@
             cursor: pointer;
             margin-top: 4px;
             letter-spacing: 0.3px;
-            transition: background 0.15s, transform 0.1s;
-            position: relative;
-            overflow: hidden;
+            transition: opacity 0.15s, transform 0.1s, box-shadow 0.15s;
+            box-shadow: 0 3px 14px rgba(42,157,143,0.28);
         }
 
-        .auth-btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-        }
-
-        .auth-btn:hover { background: var(--accent-light); }
+        .auth-btn:hover { opacity: 0.92; box-shadow: 0 4px 18px rgba(42,157,143,0.35); }
         .auth-btn:active { transform: scale(0.99); }
 
         .alert {
@@ -228,8 +228,8 @@
             display: none;
         }
 
-        .alert-error { color: var(--danger); background: #fdf0ee; border: 1px solid #f5c6c0; }
-        .alert-success { color: var(--accent); background: #edf5f0; border: 1px solid #b8d9c4; }
+        .alert-error { color: #c0392b; background: var(--danger-bg); border: 1px solid #f5c6c0; }
+        .alert-success { color: var(--accent-dark); background: var(--teal-pale); border: 1px solid var(--mint); }
 
         /* ── CHAT SCREEN ── */
         #chat-screen {
@@ -237,13 +237,15 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 780px;
+            max-width: 800px;
             height: 90vh;
-            max-height: 820px;
+            max-height: 840px;
             background: var(--white);
             border-radius: var(--radius-xl);
             border: 1px solid var(--surface-3);
-            box-shadow: 0 2px 40px rgba(0,0,0,0.07), 0 0 0 1px rgba(255,255,255,0.8) inset;
+            box-shadow:
+                0 4px 50px rgba(42,157,143,0.08),
+                0 1px 0 rgba(255,255,255,0.9) inset;
             flex-direction: column;
             overflow: hidden;
             animation: slideUp 0.35s ease;
@@ -251,40 +253,40 @@
 
         #chat-screen.visible { display: flex; }
 
-        /* ── SIDEBAR + MAIN layout ── */
         .chat-body {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
 
+        /* ── SIDEBAR ── */
         .sidebar {
-            width: 220px;
+            width: 225px;
             border-right: 1px solid var(--surface-2);
             display: flex;
             flex-direction: column;
-            background: var(--surface);
+            background: var(--teal-pale);
             flex-shrink: 0;
         }
 
         .sidebar-header {
-            padding: 14px 14px 10px;
-            border-bottom: 1px solid var(--surface-2);
+            padding: 16px 14px 12px;
+            border-bottom: 1px solid var(--surface-3);
         }
 
         .sidebar-title {
             font-family: 'Syne', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 10px;
+            font-weight: 700;
             color: var(--ink-mute);
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 10px;
         }
 
         .new-chat-btn {
             width: 100%;
-            padding: 8px 10px;
+            padding: 8px 11px;
             background: var(--accent);
             color: white;
             border: none;
@@ -295,12 +297,13 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
-            transition: background 0.15s;
+            gap: 7px;
+            transition: background 0.15s, box-shadow 0.15s;
             letter-spacing: 0.2px;
+            box-shadow: 0 2px 8px rgba(42,157,143,0.2);
         }
 
-        .new-chat-btn:hover { background: var(--accent-light); }
+        .new-chat-btn:hover { background: var(--accent-light); box-shadow: 0 3px 12px rgba(42,157,143,0.28); }
         .new-chat-btn svg { width: 14px; height: 14px; fill: white; flex-shrink: 0; }
 
         .conversations-list {
@@ -310,7 +313,7 @@
         }
 
         .conversations-list::-webkit-scrollbar { width: 3px; }
-        .conversations-list::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 4px; }
+        .conversations-list::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }
 
         .conv-item {
             padding: 9px 10px;
@@ -323,8 +326,8 @@
             margin-bottom: 2px;
         }
 
-        .conv-item:hover { background: var(--surface-2); }
-        .conv-item.active { background: var(--accent-glow); border: 1px solid rgba(26,71,42,0.15); }
+        .conv-item:hover { background: rgba(42,157,143,0.07); }
+        .conv-item.active { background: rgba(42,157,143,0.12); border: 1px solid rgba(42,157,143,0.18); }
 
         .conv-item svg { width: 13px; height: 13px; fill: var(--ink-mute); flex-shrink: 0; }
         .conv-item.active svg { fill: var(--accent); }
@@ -338,11 +341,11 @@
             flex: 1;
         }
 
-        .conv-item.active .conv-title { color: var(--accent); font-weight: 500; }
+        .conv-item.active .conv-title { color: var(--accent-dark); font-weight: 500; }
 
         .conv-delete {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             background: none;
             border: none;
             cursor: pointer;
@@ -355,15 +358,15 @@
         }
 
         .conv-item:hover .conv-delete { display: flex; }
-        .conv-delete:hover { background: #fdf0ee; }
+        .conv-delete:hover { background: var(--danger-bg); }
         .conv-delete svg { width: 11px; height: 11px; fill: var(--danger); }
 
         .sidebar-empty {
-            padding: 20px 14px;
+            padding: 24px 14px;
             font-size: 12px;
             color: var(--ink-mute);
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* ── MAIN CHAT ── */
@@ -375,7 +378,7 @@
         }
 
         .chat-header {
-            padding: 14px 18px;
+            padding: 14px 20px;
             border-bottom: 1px solid var(--surface-2);
             display: flex;
             align-items: center;
@@ -383,19 +386,20 @@
             background: var(--white);
         }
 
-        .chat-header-left { display: flex; align-items: center; gap: 10px; }
+        .chat-header-left { display: flex; align-items: center; gap: 11px; }
 
         .header-brand-mark {
-            width: 32px;
-            height: 32px;
-            background: var(--accent);
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 2px 8px rgba(42,157,143,0.22);
         }
 
-        .header-brand-mark svg { width: 17px; height: 17px; fill: var(--gold-light); }
+        .header-brand-mark svg { width: 17px; height: 17px; fill: white; }
 
         .chat-title {
             font-family: 'Syne', sans-serif;
@@ -413,26 +417,26 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            padding: 4px 10px;
-            background: var(--surface);
+            padding: 4px 11px;
+            background: var(--teal-pale);
             border-radius: 20px;
-            border: 1px solid var(--surface-3);
+            border: 1px solid var(--mint);
         }
 
         .status-dot {
             width: 6px;
             height: 6px;
-            background: #2ecc71;
+            background: var(--accent);
             border-radius: 50%;
             animation: pulse 2.5s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.35; }
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(42,157,143,0.3); }
+            50% { opacity: 0.6; box-shadow: 0 0 0 3px rgba(42,157,143,0); }
         }
 
-        .status-text { font-size: 11px; color: var(--ink-mute); font-weight: 500; }
+        .status-text { font-size: 11px; color: var(--accent-dark); font-weight: 600; }
 
         .logout-btn {
             font-family: 'Syne', sans-serif;
@@ -441,7 +445,7 @@
             color: var(--ink-mute);
             background: var(--surface);
             border: 1px solid var(--surface-3);
-            padding: 5px 11px;
+            padding: 5px 12px;
             border-radius: var(--radius-sm);
             cursor: pointer;
             letter-spacing: 0.3px;
@@ -449,7 +453,7 @@
             transition: all 0.15s;
         }
 
-        .logout-btn:hover { color: var(--ink); border-color: var(--surface-3); background: var(--surface-2); }
+        .logout-btn:hover { color: var(--ink); border-color: var(--mint); background: var(--teal-pale); }
 
         #messages {
             flex: 1;
@@ -463,7 +467,7 @@
 
         #messages::-webkit-scrollbar { width: 4px; }
         #messages::-webkit-scrollbar-track { background: transparent; }
-        #messages::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 4px; }
+        #messages::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 4px; }
 
         .msg-row {
             display: flex;
@@ -494,8 +498,9 @@
         }
 
         .msg-avatar.ai {
-            background: var(--accent);
-            color: var(--gold-light);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            box-shadow: 0 2px 6px rgba(42,157,143,0.2);
         }
 
         .msg-avatar.user-av {
@@ -508,21 +513,22 @@
             padding: 11px 15px;
             border-radius: var(--radius-md);
             font-size: 14.5px;
-            line-height: 1.6;
+            line-height: 1.65;
             font-family: 'Instrument Sans', sans-serif;
         }
 
         .msg-bubble.ai {
-            background: var(--surface);
+            background: var(--teal-pale);
             color: var(--ink);
             border-bottom-left-radius: 4px;
-            border: 1px solid var(--surface-2);
+            border: 1px solid var(--surface-3);
         }
 
         .msg-bubble.user {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             color: white;
             border-bottom-right-radius: 4px;
+            box-shadow: 0 2px 10px rgba(42,157,143,0.2);
         }
 
         .empty-state {
@@ -537,18 +543,18 @@
         }
 
         .empty-mark {
-            width: 52px;
-            height: 52px;
-            background: var(--surface);
+            width: 56px;
+            height: 56px;
+            background: var(--teal-pale);
             border-radius: var(--radius-md);
-            border: 1px solid var(--surface-3);
+            border: 1px solid var(--mint);
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 4px;
         }
 
-        .empty-mark svg { width: 26px; height: 26px; fill: var(--ink-mute); opacity: 0.4; }
+        .empty-mark svg { width: 26px; height: 26px; fill: var(--accent); opacity: 0.45; }
         .empty-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; color: var(--ink-soft); }
         .empty-sub { font-size: 13px; color: var(--ink-mute); }
 
@@ -563,7 +569,7 @@
 
         #user-input {
             flex: 1;
-            padding: 11px 15px;
+            padding: 11px 16px;
             border: 1.5px solid var(--surface-3);
             border-radius: var(--radius-md);
             font-family: 'Instrument Sans', sans-serif;
@@ -571,16 +577,21 @@
             color: var(--ink);
             background: var(--surface);
             outline: none;
-            transition: border-color 0.15s, background 0.15s;
+            transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
         }
 
-        #user-input:focus { border-color: var(--accent); background: var(--white); }
+        #user-input:focus {
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(42,157,143,0.08);
+        }
+
         #user-input::placeholder { color: var(--ink-mute); opacity: 0.5; }
 
         #send-btn {
-            width: 42px;
-            height: 42px;
-            background: var(--accent);
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             border: none;
             border-radius: var(--radius-md);
             cursor: pointer;
@@ -588,10 +599,11 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: background 0.15s, transform 0.1s;
+            transition: opacity 0.15s, transform 0.1s, box-shadow 0.15s;
+            box-shadow: 0 3px 12px rgba(42,157,143,0.28);
         }
 
-        #send-btn:hover { background: var(--accent-light); }
+        #send-btn:hover { opacity: 0.9; box-shadow: 0 4px 16px rgba(42,157,143,0.35); }
         #send-btn:active { transform: scale(0.95); }
         #send-btn svg { width: 17px; height: 17px; fill: white; }
 
@@ -600,19 +612,20 @@
             gap: 4px;
             align-items: center;
             padding: 12px 15px;
-            background: var(--surface);
+            background: var(--teal-pale);
             border-radius: var(--radius-md);
             border-bottom-left-radius: 4px;
-            border: 1px solid var(--surface-2);
+            border: 1px solid var(--surface-3);
             width: fit-content;
         }
 
         .typing-dot {
             width: 5px;
             height: 5px;
-            background: var(--ink-mute);
+            background: var(--accent);
             border-radius: 50%;
             animation: bounce 1.3s infinite;
+            opacity: 0.5;
         }
 
         .typing-dot:nth-child(2) { animation-delay: 0.18s; }
@@ -626,7 +639,7 @@
         .loading-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(245,243,238,0.7);
+            background: rgba(240,247,247,0.75);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -638,7 +651,7 @@
         .loading-spinner {
             width: 28px;
             height: 28px;
-            border: 2.5px solid var(--surface-3);
+            border: 2.5px solid var(--mint);
             border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
@@ -715,7 +728,6 @@
         </div>
 
         <div class="chat-body">
-            <!-- Sidebar -->
             <div class="sidebar">
                 <div class="sidebar-header">
                     <div class="sidebar-title">Conversations</div>
@@ -729,7 +741,6 @@
                 </div>
             </div>
 
-            <!-- Main Chat -->
             <div class="chat-main">
                 <div id="messages">
                     <div class="empty-state" id="empty-state">
@@ -756,7 +767,6 @@
         let conversationId = null
         let allConversations = []
 
-        // ── TAB SWITCHING ──
         function showTab(tab) {
             document.querySelectorAll('.auth-tab').forEach((t, i) =>
                 t.classList.toggle('active', (tab === 'login' && i === 0) || (tab === 'signup' && i === 1))
@@ -775,7 +785,6 @@
             document.getElementById(id).style.display = 'none'
         }
 
-        // ── SCREEN SWITCHING ──
         function switchToChat() {
             document.getElementById('auth-screen').style.display = 'none'
             document.getElementById('chat-screen').classList.add('visible')
@@ -794,7 +803,6 @@
             switchToAuth()
         }
 
-        // ── ON LOAD ──
         window.onload = function () {
             const token = localStorage.getItem('token')
             if (token) {
@@ -803,7 +811,6 @@
             }
         }
 
-        // ── AUTH ──
         async function signup() {
             hideAlert('auth-error-signup')
             const email = document.getElementById('signup-email').value
@@ -842,19 +849,15 @@
             }
         }
 
-        // ── CONVERSATIONS ──
         async function loadAllConversations() {
             const token = localStorage.getItem('token')
             const res = await fetch(`${API}/conversations/`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
             if (!res.ok) return
-
             allConversations = await res.json()
             renderConversationsList()
-
             if (allConversations.length > 0) {
-                // Load the most recent conversation
                 const latest = allConversations[allConversations.length - 1]
                 selectConversation(latest.id)
             }
@@ -866,9 +869,7 @@
                 list.innerHTML = '<div class="sidebar-empty">No conversations yet</div>'
                 return
             }
-
             list.innerHTML = ''
-            // Show newest first
             ;[...allConversations].reverse().forEach(conv => {
                 const item = document.createElement('div')
                 item.className = `conv-item ${conv.id === conversationId ? 'active' : ''}`
@@ -930,9 +931,7 @@
                 headers: { 'Authorization': `Bearer ${token}` }
             })
             if (!res.ok) return
-
             allConversations = allConversations.filter(c => c.id !== id)
-
             if (conversationId === id) {
                 conversationId = null
                 clearMessages()
@@ -943,7 +942,6 @@
             renderConversationsList()
         }
 
-        // ── MESSAGES ──
         function clearMessages() {
             document.getElementById('messages').innerHTML = `
                 <div class="empty-state" id="empty-state">
@@ -958,21 +956,16 @@
         function addMessage(role, text) {
             const empty = document.getElementById('empty-state')
             if (empty) empty.remove()
-
             const row = document.createElement('div')
             row.className = `msg-row ${role === 'user' ? 'user' : ''}`
-
             const avatar = document.createElement('div')
             avatar.className = `msg-avatar ${role === 'user' ? 'user-av' : 'ai'}`
             avatar.textContent = role === 'user' ? 'U' : 'AI'
-
             const bubble = document.createElement('div')
             bubble.className = `msg-bubble ${role === 'user' ? 'user' : 'ai'}`
             bubble.textContent = text
-
             if (role === 'user') { row.appendChild(bubble); row.appendChild(avatar) }
             else { row.appendChild(avatar); row.appendChild(bubble) }
-
             document.getElementById('messages').appendChild(row)
             document.getElementById('messages').scrollTop = 99999
             return bubble
@@ -996,21 +989,17 @@
             document.getElementById('messages').scrollTop = 99999
         }
 
-        // ── SEND MESSAGE ──
         async function sendMessage() {
             if (!conversationId) {
                 await createNewConversation()
             }
-
             const token = localStorage.getItem('token')
             const input = document.getElementById('user-input')
             const userInput = input.value.trim()
             if (!userInput) return
-
             input.value = ''
             addMessage('user', userInput)
             addTypingIndicator()
-
             const response = await fetch(`${API}/chat/`, {
                 method: 'POST',
                 headers: {
@@ -1019,15 +1008,12 @@
                 },
                 body: JSON.stringify({ conversation_id: conversationId, message: userInput })
             })
-
             const typingRow = document.getElementById('typing-row')
             if (typingRow) typingRow.remove()
-
             const reader = response.body.getReader()
             const decoder = new TextDecoder()
             const aiBubble = addMessage('ai', '')
             let fullText = ''
-
             while (true) {
                 const { value, done } = await reader.read()
                 if (done) break
@@ -1043,8 +1029,6 @@
                     }
                 }
             }
-
-            // Update conversation title if it's the first message
             const conv = allConversations.find(c => c.id === conversationId)
             if (conv && conv.title === 'New Conversation') {
                 conv.title = userInput.slice(0, 30) + (userInput.length > 30 ? '…' : '')
