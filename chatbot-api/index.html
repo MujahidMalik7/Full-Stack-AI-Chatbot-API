@@ -775,13 +775,6 @@
             document.getElementById('signup-form').classList.toggle('hidden', tab !== 'signup')
         }
 
-        function parseError(detail) {
-            if (!detail) return 'Something went wrong'
-            if (typeof detail === 'string') return detail
-            if (Array.isArray(detail)) return detail.map(e => e.msg || JSON.stringify(e)).join(', ')
-            return JSON.stringify(detail)
-        }
-
         function showAlert(id, msg) {
             const el = document.getElementById(id)
             el.textContent = msg
@@ -832,7 +825,7 @@
                 setTimeout(() => showTab('login'), 1500)
             } else {
                 const data = await res.json()
-                showAlert('auth-error-signup', parseError(data.detail))
+                showAlert('auth-error-signup', data.detail || 'Signup failed')
             }
         }
 
@@ -852,7 +845,7 @@
                 loadAllConversations()
             } else {
                 const data = await res.json()
-                showAlert('auth-error', parseError(data.detail))
+                showAlert('auth-error', data.detail || 'Login failed')
             }
         }
 
@@ -1039,7 +1032,7 @@
             const conv = allConversations.find(c => c.id === conversationId)
             if (conv && conv.title === 'New Conversation') {
                 conv.title = userInput.slice(0, 30) + (userInput.length > 30 ? '…' : '')
-                renderConversationsList()  
+                renderConversationsList()
             }
         }
     </script>
