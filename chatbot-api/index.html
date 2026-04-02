@@ -1039,7 +1039,7 @@
             const conv = allConversations.find(c => c.id === conversationId)
             if (conv && conv.title === 'New Conversation') {
                 conv.title = userInput.slice(0, 30) + (userInput.length > 30 ? '…' : '')
-                renderConversationsList()
+                renderConversationsList()  
             }
         }
     </script>
