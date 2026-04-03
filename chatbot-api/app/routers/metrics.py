@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from datetime import datetime
-from ..dependencies import get_db
+from ..dependencies import get_db, get_admin_user
 from .. import models
 
 router = APIRouter(prefix='/system', tags=['system'])
@@ -13,7 +13,7 @@ def health():
     return {"status": "ok", "timestamp": datetime.utcnow().isoformat()}
 
 @router.get("/metrics")
-def get_metrics(db: Session = Depends(get_db)):
+def get_metrics(_ = Depends(get_admin_user), db: Session = Depends(get_db)):
     """Queries the database for global usage statistics."""
     total_users = db.query(models.User).count()
     total_conversations = db.query(models.Conversation).count()
@@ -24,5 +24,3 @@ def get_metrics(db: Session = Depends(get_db)):
         "total_conversations": total_conversations,
         "total_messages": total_messages
     }
-
-# TODO: protect with admin auth
