@@ -2,10 +2,6 @@
 
 A production-ready REST API for an AI-powered chatbot built with **FastAPI**, **PostgreSQL**, and **Claude by Anthropic**. Features JWT authentication, real-time streaming responses via SSE, conversation management, admin access control, and rate limiting — deployed on Railway.
 
-## Live Demo
-
-**🚀 Deployed:** [https://full-stack-ai-chatbot-api-mujahid.up.railway.app](https://full-stack-ai-chatbot-api-mujahid.up.railway.app)
-
 ---
 
 ## Tech Stack
